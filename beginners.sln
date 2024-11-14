@@ -81,6 +81,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pointer_to_class_member", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "constexpr", "constexpr\constexpr.vcxproj", "{5D9EE97E-EDD6-4837-B4BF-585F4F57C0AE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "designated_initializers", "designated_initializers\designated_initializers.vcxproj", "{79919BC6-8744-47CC-BF62-07CC0036111E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -401,6 +403,14 @@ Global
 		{5D9EE97E-EDD6-4837-B4BF-585F4F57C0AE}.Release|x64.Build.0 = Release|x64
 		{5D9EE97E-EDD6-4837-B4BF-585F4F57C0AE}.Release|x86.ActiveCfg = Release|Win32
 		{5D9EE97E-EDD6-4837-B4BF-585F4F57C0AE}.Release|x86.Build.0 = Release|Win32
+		{79919BC6-8744-47CC-BF62-07CC0036111E}.Debug|x64.ActiveCfg = Debug|x64
+		{79919BC6-8744-47CC-BF62-07CC0036111E}.Debug|x64.Build.0 = Debug|x64
+		{79919BC6-8744-47CC-BF62-07CC0036111E}.Debug|x86.ActiveCfg = Debug|Win32
+		{79919BC6-8744-47CC-BF62-07CC0036111E}.Debug|x86.Build.0 = Debug|Win32
+		{79919BC6-8744-47CC-BF62-07CC0036111E}.Release|x64.ActiveCfg = Release|x64
+		{79919BC6-8744-47CC-BF62-07CC0036111E}.Release|x64.Build.0 = Release|x64
+		{79919BC6-8744-47CC-BF62-07CC0036111E}.Release|x86.ActiveCfg = Release|Win32
+		{79919BC6-8744-47CC-BF62-07CC0036111E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
