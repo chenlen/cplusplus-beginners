@@ -18,12 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="dynamic_array.cpp">
+    <ClCompile Include="student.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dynamic_array.h">
+    <ClInclude Include="student.h">
       <Filter>來源檔案</Filter>
     </ClInclude>
   </ItemGroup>
