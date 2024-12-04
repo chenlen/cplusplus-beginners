@@ -5,25 +5,27 @@
 
 int main()
 {
-    const Student s1("Mike", 1131823, 17);
+    Student s1("Mike", 1131823, 17);
     std::cout << s1.GetName() << "\n";
     std::cout << s1.GetID() << "\n";
     std::cout << s1.GetAge() << "\n";
 
-    Student s2("Jerry", 1131824, 18);
-    std::cout << s2.GetName() << "\n";
-    std::cout << s2.GetID() << "\n";
-    std::cout << s2.GetAge() << "\n";
-
-    s2.AddCourse(786);
-    s2.AddCourse(324);
-    s2.AddCourse(262);
-    for (int i = 0; i < s2.GetCourseSize(); ++i)
+    s1.AddCourse(786);
+    s1.AddCourse(324);
+    s1.AddCourse(262);
+    for (int i = 0; i < s1.GetCourseSize(); ++i)
     {
-        std::cout << s2.GetCourse(i) << " ";
+        std::cout << s1.GetCourse(i) << " ";
     }
 
-    Student s3(s1);
+    std::cout << "\n";
 
-    s3 = s2;
+    Student s2 = s1;
+    Student s3("Jerry", 1131825, 25);
+    (s1 = s2) = s3;
+
+    int a = 5;
+    int b = 4;
+    int c = 3;
+    (a = b) = c;
 }

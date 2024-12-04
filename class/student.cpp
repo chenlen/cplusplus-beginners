@@ -1,5 +1,10 @@
 #include "student.h"
 
+void Func(Student* s)
+{
+
+}
+
 Student::Student(const char* name, int id, int age) :
     name_(name),
     id_(id),
@@ -11,9 +16,14 @@ Student::Student(const Student& rhs) :
     name_(rhs.name_),
     id_(rhs.id_),
     age_(rhs.age_),
-    size_(rhs.size_),
-    courses_(rhs.courses_)
-{}
+    size_(rhs.size_)
+{
+    courses_ = new int[size_] {};
+    for (int i = 0; i < size_; ++i)
+    {
+        courses_[i] = rhs.courses_[i];
+    }
+}
 
 Student& Student::operator=(const Student& rhs)
 {
@@ -23,7 +33,13 @@ Student& Student::operator=(const Student& rhs)
         id_ = rhs.id_;
         age_ = rhs.age_;
         size_ = rhs.size_;
-        courses_ = rhs.courses_;
+
+        delete[] courses_;
+        courses_ = new int[size_] {};
+        for (int i = 0; i < size_; ++i)
+        {
+            courses_[i] = rhs.courses_[i];
+        }
     }
 
     return *this;
@@ -37,6 +53,7 @@ Student::~Student()
 void Student::SetName(const char* name)
 {
     name_ = name;
+    Func(this);
 }
 
 const char* Student::GetName() const
