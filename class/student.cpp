@@ -5,7 +5,7 @@ void Func(Student* s)
 
 }
 
-Student::Student(const char* name, int id, int age) :
+Student::Student(const std::string& name, int id, int age) :
     name_(name),
     id_(id),
     age_(age)
@@ -16,13 +16,16 @@ Student::Student(const Student& rhs) :
     name_(rhs.name_),
     id_(rhs.id_),
     age_(rhs.age_),
-    size_(rhs.size_)
+    courses_(rhs.courses_)
 {
-    courses_ = new int[size_] {};
-    for (int i = 0; i < size_; ++i)
-    {
-        courses_[i] = rhs.courses_[i];
-    }
+}
+
+Student::Student(Student&& rhs) noexcept :
+    name_(std::move(rhs.name_)),
+    id_(rhs.id_),
+    age_(rhs.age_),
+    courses_(std::move(rhs.courses_))
+{
 }
 
 Student& Student::operator=(const Student& rhs)
@@ -32,14 +35,20 @@ Student& Student::operator=(const Student& rhs)
         name_ = rhs.name_;
         id_ = rhs.id_;
         age_ = rhs.age_;
-        size_ = rhs.size_;
+        courses_ = rhs.courses_;
+    }
 
-        delete[] courses_;
-        courses_ = new int[size_] {};
-        for (int i = 0; i < size_; ++i)
-        {
-            courses_[i] = rhs.courses_[i];
-        }
+    return *this;
+}
+
+Student& Student::operator=(Student&& rhs) noexcept
+{
+    if (this != &rhs)
+    {
+        name_ = std::move(rhs.name_);
+        id_ = rhs.id_;
+        age_ = rhs.age_;
+        courses_ = std::move(rhs.courses_);
     }
 
     return *this;
@@ -47,16 +56,14 @@ Student& Student::operator=(const Student& rhs)
 
 Student::~Student()
 {
-    delete[] courses_;
 }
 
-void Student::SetName(const char* name)
+void Student::SetName(const std::string& name)
 {
     name_ = name;
-    Func(this);
 }
 
-const char* Student::GetName() const
+std::string Student::GetName() const
 {
     return name_;
 }
@@ -86,28 +93,17 @@ int Student::GetAge() const
 
 void Student::AddCourse(int id)
 {
-    auto new_courses = new int[size_ + 1] {};
-    for (int i = 0; i < size_; ++i)
-    {
-        new_courses[i] = courses_[i];
-    }
-
-    new_courses[size_] = id;
-
-    delete[] courses_;
-
-    courses_ = new_courses;
-    ++size_;
+    courses_.push_back(id);
 }
 
 int Student::GetCourseSize() const
 {
-    return size_;
+    return courses_.size();
 }
 
 int Student::GetCourse(int index) const
 {
-    if (index < size_)
+    if (index < courses_.size())
     {
         return courses_[index];
     }

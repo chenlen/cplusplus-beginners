@@ -1,16 +1,21 @@
 #pragma once
 
+#include <string>
+#include <vector>
+
 class Student
 {
 public:
-    Student(const char* name, int id, int age);
+    Student(const std::string& name, int id, int age);
     Student(const Student& rhs);
+    Student(Student&& rhs) noexcept;
     Student& operator=(const Student& rhs);
+    Student& operator=(Student&& rhs) noexcept;
     ~Student();
 
 public:
-    void SetName(const char* name);
-    const char* GetName() const;
+    void SetName(const std::string& name);
+    std::string GetName() const;
 
     void SetID(int id);
     int GetID() const;
@@ -23,10 +28,8 @@ public:
     int GetCourse(int index) const;
 
 private:
-    const char* name_;
+    std::string name_;
     int id_;
     int age_;
-
-    int size_ = 0;
-    int* courses_ = nullptr;
+    std::vector<int> courses_;
 };
