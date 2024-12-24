@@ -1,10 +1,5 @@
 #include "student.h"
 
-void Func(Student* s)
-{
-
-}
-
 Student::Student(const std::string& name, int id, int age) :
     name_(name),
     id_(id),
@@ -112,3 +107,89 @@ int Student::GetCourse(int index) const
         return -1;
     }
 }
+
+///////////////
+UndergraduateStudent::UndergraduateStudent(const std::string& name, int id, int age, const std::string& major, int year)
+    : Student(name, id, age), major_(major), year_(year) {
+}
+
+UndergraduateStudent::UndergraduateStudent(const UndergraduateStudent& rhs)
+    : Student(rhs), major_(rhs.major_), year_(rhs.year_) {
+}
+
+UndergraduateStudent::UndergraduateStudent(UndergraduateStudent&& rhs) noexcept
+    : Student(std::move(rhs)), major_(std::move(rhs.major_)), year_(rhs.year_) {
+}
+
+UndergraduateStudent& UndergraduateStudent::operator=(const UndergraduateStudent& rhs)
+{
+    if (this != &rhs)
+    {
+        Student::operator=(rhs);
+        major_ = rhs.major_;
+        year_ = rhs.year_;
+    }
+    return *this;
+}
+
+UndergraduateStudent& UndergraduateStudent::operator=(UndergraduateStudent&& rhs) noexcept
+{
+    if (this != &rhs)
+    {
+        Student::operator=(std::move(rhs));
+        major_ = std::move(rhs.major_);
+        year_ = rhs.year_;
+    }
+    return *this;
+}
+
+UndergraduateStudent::~UndergraduateStudent() {}
+
+void UndergraduateStudent::SetMajor(const std::string& major) { major_ = major; }
+std::string UndergraduateStudent::GetMajor() const { return major_; }
+
+void UndergraduateStudent::SetYear(int year) { year_ = year; }
+int UndergraduateStudent::GetYear() const { return year_; }
+
+//////////////////////
+GraduateStudent::GraduateStudent(const std::string& name, int id, int age, const std::string& researchTopic, const std::string& advisor)
+    : Student(name, id, age), researchTopic_(researchTopic), advisor_(advisor) {
+}
+
+GraduateStudent::GraduateStudent(const GraduateStudent& rhs)
+    : Student(rhs), researchTopic_(rhs.researchTopic_), advisor_(rhs.advisor_) {
+}
+
+GraduateStudent::GraduateStudent(GraduateStudent&& rhs) noexcept
+    : Student(std::move(rhs)), researchTopic_(std::move(rhs.researchTopic_)), advisor_(std::move(rhs.advisor_)) {
+}
+
+GraduateStudent& GraduateStudent::operator=(const GraduateStudent& rhs)
+{
+    if (this != &rhs)
+    {
+        Student::operator=(rhs);
+        researchTopic_ = rhs.researchTopic_;
+        advisor_ = rhs.advisor_;
+    }
+    return *this;
+}
+
+GraduateStudent& GraduateStudent::operator=(GraduateStudent&& rhs) noexcept
+{
+    if (this != &rhs)
+    {
+        Student::operator=(std::move(rhs));
+        researchTopic_ = std::move(rhs.researchTopic_);
+        advisor_ = std::move(rhs.advisor_);
+    }
+    return *this;
+}
+
+GraduateStudent::~GraduateStudent() {}
+
+void GraduateStudent::SetResearchTopic(const std::string& researchTopic) { researchTopic_ = researchTopic; }
+std::string GraduateStudent::GetResearchTopic() const { return researchTopic_; }
+
+void GraduateStudent::SetAdvisor(const std::string& advisor) { advisor_ = advisor; }
+std::string GraduateStudent::GetAdvisor() const { return advisor_; }
