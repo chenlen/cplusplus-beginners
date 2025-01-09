@@ -1,4 +1,5 @@
 #include "student.h"
+#include <iostream>
 
 Student::Student(const std::string& name, int id, int age) :
     name_(name),
@@ -108,6 +109,11 @@ int Student::GetCourse(int index) const
     }
 }
 
+void Student::Introduce() const
+{
+    std::cout << "I am a student. my name is " << GetName() << ".\n";
+}
+
 //////////////////////////////////////////
 UndergraduateStudent::UndergraduateStudent(const std::string& name, int id, int age, const std::string& major) :
     Student(name, id, age),
@@ -161,4 +167,69 @@ void UndergraduateStudent::SetMajor(const std::string& major)
 std::string UndergraduateStudent::GetMajor() const
 {
     return major_;
+}
+
+void UndergraduateStudent::Introduce() const
+{
+    std::cout << "I am an undergraduate. my name is " << GetName() << " and my major is " << GetMajor() << ".\n";
+}
+
+//////////////////////////////////////////
+GraduateStudent::GraduateStudent(const std::string& name, int id, int age, const std::string& research_topic) :
+    Student(name, id, age),
+    research_topic_(research_topic)
+{
+}
+
+GraduateStudent::GraduateStudent(const GraduateStudent& rhs) :
+    Student(rhs),
+    research_topic_(rhs.research_topic_)
+{
+}
+
+GraduateStudent::GraduateStudent(GraduateStudent&& rhs) noexcept :
+    Student(std::move(rhs)),
+    research_topic_(std::move(rhs.research_topic_))
+{
+}
+
+GraduateStudent& GraduateStudent::operator=(const GraduateStudent& rhs)
+{
+    if (this != &rhs)
+    {
+        Student::operator=(rhs);
+        research_topic_ = rhs.research_topic_;
+    }
+
+    return *this;
+}
+
+GraduateStudent& GraduateStudent::operator=(GraduateStudent&& rhs) noexcept
+{
+    if (this != &rhs)
+    {
+        Student::operator=(std::move(rhs));
+        research_topic_ = std::move(rhs.research_topic_);
+    }
+
+    return *this;
+}
+
+GraduateStudent::~GraduateStudent()
+{
+}
+
+void GraduateStudent::SetResearchTopic(const std::string& research_topic)
+{
+    research_topic_ = research_topic;
+}
+
+std::string GraduateStudent::GetResearchTopic() const
+{
+    return research_topic_;
+}
+
+void GraduateStudent::Introduce() const
+{
+    std::cout << "I am a graduate. my name is " << GetName() << " and my research topic is " << GetResearchTopic() << ".\n";
 }

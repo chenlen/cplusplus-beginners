@@ -27,6 +27,8 @@ public:
     int GetCourseSize() const;
     int GetCourse(int index) const;
 
+    virtual void Introduce() const;
+
 private:
     std::string name_;
     int id_;
@@ -48,6 +50,28 @@ public:
     void SetMajor(const std::string& major);
     std::string GetMajor() const;
 
+    void Introduce() const override;
+
 private:
     std::string major_;
+};
+
+class GraduateStudent : public Student
+{
+public:
+    GraduateStudent(const std::string& name, int id, int age, const std::string& research_topic);
+    GraduateStudent(const GraduateStudent& rhs);
+    GraduateStudent(GraduateStudent&& rhs) noexcept;
+    GraduateStudent& operator=(const GraduateStudent& rhs);
+    GraduateStudent& operator=(GraduateStudent&& rhs) noexcept;
+    ~GraduateStudent();
+
+public:
+    void SetResearchTopic(const std::string& research_topic);
+    std::string GetResearchTopic() const;
+
+    void Introduce() const override;
+
+private:
+    std::string research_topic_;
 };
